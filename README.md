@@ -30,7 +30,6 @@ Este projeto faz parte do meu processo de evolução como desenvolvedor, onde bu
 ## 🛠️ Tecnologias
 
 * Java
-* IntelliJ IDEA
 
 ---
 
@@ -72,7 +71,7 @@ Este projeto foi criado com o objetivo de consolidar fundamentos essenciais da p
 1. Clone o repositório:
 
 ```
-git clone https://github.com/SEU-USUARIO/sistema-de-estoque-java.git
+git clone https://github.com/Alevir-Coelho-Neto/sistema-de-estoque-java.git
 ```
 
 2. Abra o projeto na sua IDE (IntelliJ, Eclipse, etc)
@@ -90,5 +89,4 @@ Novas funcionalidades serão adicionadas progressivamente.
 
 ## 👨‍💻 Autor
 
-Levi Carvalho
-Em evolução constante na área de desenvolvimento 🚀
+Alevir Coelho Neto
