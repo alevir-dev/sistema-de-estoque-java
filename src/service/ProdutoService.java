@@ -23,7 +23,7 @@ public class ProdutoService {
         produto.nome = nomeProduto;
         produto.valor = valor;
         produto.quantidade = quantidade;
-
+        produto.ID = posicaoProduto + 1;
         estoque[posicaoProduto] = produto;
         posicaoProduto++;
 
@@ -38,11 +38,14 @@ public class ProdutoService {
 
 
         for (int i = 0; i < posicaoProduto; i++) {
-            System.out.println("-------------------");
-            System.out.println("Produto "+(i + 1));
-            System.out.println("Nome: " + estoque[i].nome);
-            System.out.println("Valor: R$" + estoque[i].valor );
-            System.out.println("Quantidade: " + estoque[i].quantidade);
+            System.out.printf(
+                    "ID: %03d | %-10s | R$ %8.2f | Qtd: %3d%n",
+                    estoque[i].ID,
+                    estoque[i].nome,
+                    estoque[i].valor,
+                    estoque[i].quantidade
+            );
+
         }
     }
 
@@ -67,20 +70,22 @@ public class ProdutoService {
     public void valorProdutosSeparadamente() {
 
         if (posicaoProduto == 0) {
-            System.out.println("Não há produtos no estoque!");
+            System.out.println("⚠️ Nenhum produto cadastrado no estoque.");
             return;
         }
 
         for (int i = 0; i < posicaoProduto; i++) {
-            double valorProduto = estoque[i].valor * estoque[i].quantidade;
+            double valorTotal = estoque[i].valor * estoque[i].quantidade;
 
-            System.out.println("____________________________________");
-            System.out.println("Nome do produto: " + estoque[i].nome);
-            System.out.println("Quantidade: " + estoque[i].quantidade);
-            System.out.println("Preço: " + estoque[i].valor);
-            System.out.println("Valor total desse produto: R$" + valorProduto);
-
-
+            System.out.println("------------------------------");
+            System.out.printf("ID: %03d%n", estoque[i].ID);
+            System.out.printf("Produto: %s%n", estoque[i].nome);
+            System.out.printf("Quantidade: %d%n", estoque[i].quantidade);
+            System.out.printf("Preço: R$ %.2f%n", estoque[i].valor);
+            System.out.printf("Total: R$ %.2f%n", valorTotal);
         }
+
+        System.out.println("------------------------------");
+
     }
 }

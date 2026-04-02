@@ -18,11 +18,8 @@ public class SistemaMain {
         produtoService.adicionarProdutos("Tablet", 1350, 15);
         produtoService.adicionarProdutos("Notebook", 3000, 15);
         produtoService.adicionarProdutos("Celular", 7500, 15);
-
-        produtoService.listarProdutos();
-
-        produtoService.valorTotalEstoque();
-        produtoService.valorProdutosSeparadamente();
+        produtoService.adicionarProdutos("Microfone",  500, 15);
+        produtoService.adicionarProdutos("Headset",  500, 15);
 
 
 
