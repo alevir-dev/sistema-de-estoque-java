@@ -1,8 +1,5 @@
 package service;
 
-import javax.sound.midi.Soundbank;
-import java.text.BreakIterator;
-
 public class ProdutoService {
 
     Produto[] estoque = new Produto[10];
@@ -20,6 +17,15 @@ public class ProdutoService {
             System.out.println("Valor e quantidade devem ser maiores que 0!");
             return;
         }
+
+        for (int i = 0; i < posicaoProduto; i++){
+            if (estoque[i].nome.equalsIgnoreCase(nomeProduto)){
+                System.out.println("Já existe esse produto no estoque!");
+                return;
+            }
+        }
+
+
 
         Produto produto = new Produto();
 
