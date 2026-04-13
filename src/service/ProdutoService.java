@@ -1,8 +1,8 @@
 package service;
 
 public class ProdutoService {
-
-    Produto[] estoque = new Produto[10];
+    private static final int TAMANHO_MAXIMO = 50;
+    Produto[] estoque = new Produto[ProdutoService.TAMANHO_MAXIMO];
     int posicaoProduto = 0;
 
 
@@ -19,20 +19,14 @@ public class ProdutoService {
         }
 
         for (int i = 0; i < posicaoProduto; i++){
-            if (estoque[i].nome.equalsIgnoreCase(nomeProduto)){
+            if (estoque[i].getNome().equalsIgnoreCase(nomeProduto)){
                 System.out.println("Já existe esse produto no estoque!");
                 return;
             }
         }
 
 
-
-        Produto produto = new Produto();
-
-        produto.nome = nomeProduto;
-        produto.valor = valor;
-        produto.quantidade = quantidade;
-        produto.ID = posicaoProduto + 1;
+        Produto produto = new Produto(nomeProduto, valor, quantidade, posicaoProduto + 1);
         estoque[posicaoProduto] = produto;
         posicaoProduto++;
 
@@ -48,10 +42,10 @@ public class ProdutoService {
         for (int i = 0; i < posicaoProduto; i++) {
             System.out.printf(
                     "ID: %03d | %-10s | R$ %8.2f | Qtd: %3d%n",
-                    estoque[i].ID,
-                    estoque[i].nome,
-                    estoque[i].valor,
-                    estoque[i].quantidade
+                    estoque[i].getID(),
+                    estoque[i].getNome(),
+                    estoque[i].getValor(),
+                    estoque[i].getQuantidade()
             );
 
         }
@@ -61,7 +55,7 @@ public class ProdutoService {
         int idEncontrado = -1;
 
         for(int i = 0; i < posicaoProduto; i++){
-            if (estoque[i].ID == idProdutoRemover){
+            if (estoque[i].getID() == idProdutoRemover){
                 idEncontrado = i;
                 break;
             }
@@ -93,7 +87,7 @@ public class ProdutoService {
         double total = 0;
 
         for (int i = 0; i < posicaoProduto; i++) {
-            double valorProduto = estoque[i].valor * estoque[i].quantidade;
+            double valorProduto = estoque[i].getValorTotal();
             total += valorProduto;
         }
 
@@ -108,13 +102,9 @@ public class ProdutoService {
         }
 
         for (int i = 0; i < posicaoProduto; i++) {
-            double valorTotal = estoque[i].valor * estoque[i].quantidade;
-
+            double valorTotal = estoque[i].getValorTotal();
             System.out.println("------------------------------");
-            System.out.printf("ID: %03d%n", estoque[i].ID);
-            System.out.printf("Produto: %s%n", estoque[i].nome);
-            System.out.printf("Quantidade: %d%n", estoque[i].quantidade);
-            System.out.printf("Preço: R$ %.2f%n", estoque[i].valor);
+            estoque[i].imprime();
             System.out.printf("Total: R$ %.2f%n", valorTotal);
         }
 
@@ -125,18 +115,15 @@ public class ProdutoService {
     public void buscarPorNome(String buscarNome){
 
         for (int i = 0; i < posicaoProduto; i++){
-            if (estoque[i].nome.equalsIgnoreCase(buscarNome)){
+            if (estoque[i].getNome().equalsIgnoreCase(buscarNome)){
                 System.out.println("\n✅ Produto encontrado!");
                 System.out.println("------------------------------");
                 System.out.println("📦 DETALHES DO PRODUTO");
                 System.out.println("------------------------------");
 
-                System.out.printf("ID: %03d%n", estoque[i].ID);
-                System.out.printf("Produto: %s%n", estoque[i].nome);
-                System.out.printf("Preço: R$ %.2f%n", estoque[i].valor);
-                System.out.printf("Quantidade: %d%n", estoque[i].quantidade);
+                estoque[i].imprime();
 
-                double total = estoque[i].valor * estoque[i].quantidade;
+                double total = estoque[i].getValorTotal();
                 System.out.printf("Valor total em estoque: R$ %.2f%n", total);
 
                 System.out.println("------------------------------");
@@ -151,18 +138,15 @@ public class ProdutoService {
 
     for (int i = 0; i < posicaoProduto; i++){
 
-        if (estoque[i].ID == buscarId){
+        if (estoque[i].getID() == buscarId){
             System.out.println("\n✅ Produto encontrado!");
             System.out.println("------------------------------");
             System.out.println("📦 DETALHES DO PRODUTO");
             System.out.println("------------------------------");
 
-            System.out.printf("ID: %03d%n", estoque[i].ID);
-            System.out.printf("Produto: %s%n", estoque[i].nome);
-            System.out.printf("Preço: R$ %.2f%n", estoque[i].valor);
-            System.out.printf("Quantidade: %d%n", estoque[i].quantidade);
+            estoque[i].imprime();
 
-            double total = estoque[i].valor * estoque[i].quantidade;
+            double total = estoque[i].getValorTotal();
             System.out.printf("Valor total em estoque: R$ %.2f%n", total);
 
             System.out.println("------------------------------");
